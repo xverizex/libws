@@ -43,7 +43,7 @@ static void parse_error ( const int ret, char **error ) {
 static int handshake ( struct params *pr, const char *ip_origin, const int type, const int fd, SSL *ssl ) {
 	char buf[4096];
 	snprintf ( buf, 4096,
-			"GET /%s HTTP/1.1\r\n"
+			"GET %s HTTP/1.1\r\n"
 			"Host: %s\r\n"
 			"Upgrade: websocket\r\n"
 			"Connection: Upgrade\r\n"
@@ -60,6 +60,7 @@ static int handshake ( struct params *pr, const char *ip_origin, const int type,
 		 );
 
 	int ret;
+	printf("%s\n", buf);
 
 	switch ( type ) {
 		case TYPE_WS:
