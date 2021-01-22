@@ -60,7 +60,6 @@ static int handshake ( struct params *pr, const char *ip_origin, const int type,
 		 );
 
 	int ret;
-	printf("%s\n", buf);
 
 	switch ( type ) {
 		case TYPE_WS:
