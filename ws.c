@@ -71,7 +71,7 @@ static int handshake ( struct params *pr, const char *ip_origin, const int type,
 		case TYPE_WSS:
 			assert ( ssl != NULL );
 			SSL_write ( ssl, buf, strlen ( buf ) );
-			ret = SSL_read ( ssl, buf, strlen ( buf ) );
+			ret = SSL_read ( ssl, buf, 4096 );
 			buf[ret] = 0;
 			if ( strncmp ( buf, switch_protocol, strlen ( switch_protocol ) ) ) return WS_ERROR_HANDSHAKE;
 			break;
@@ -381,9 +381,8 @@ int ws_gzip_decompress ( unsigned char *in, size_t length_in, unsigned char *out
 
 	int ret = inflateInit2 ( &stmt, 15 + 16 );
 	if ( ret != Z_OK ) return WS_ERROR;
-
+	
 	ret = inflate ( &stmt, Z_NO_FLUSH );
-
 	if ( ret == Z_STREAM_END ) {
 		inflateEnd ( &stmt );
 		length_out = total_size - stmt.avail_out;
