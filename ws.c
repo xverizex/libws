@@ -331,7 +331,7 @@ size_t ws_read ( struct ws *ws, unsigned char *buffer, unsigned int length ) {
 	if ( dt[0] == 0x88 ) {
 		if ( dt[1] == 126 ) {
 			int size = ( dt[2] << 8 ) | dt[3];
-			unsigned char *s = &dt[3];
+			unsigned char *s = &dt[4];
 			memcpy ( buffer, s, size );
 			return size;
 		}
