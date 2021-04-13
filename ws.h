@@ -2,6 +2,10 @@
 #define __WS_H
 #include <openssl/ssl.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define TYPE_WS          1
 #define TYPE_WSS         2
 
@@ -28,5 +32,9 @@ int ws_gzip_decompress ( unsigned char *in, size_t length_in, unsigned char *out
 #define WS_ERROR_CANT_CONNECT_TO_HOST  -7
 #define WS_ERROR_HANDSHAKE             -8
 #define WS_ERROR                       -9
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
